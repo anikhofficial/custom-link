@@ -15,26 +15,34 @@
     
     <style>
         :root {
-            --primary-color: #a78bfa; /* Vibrant Lavender */
-            --secondary-color: rgba(167, 139, 250, 0.2);
-            --background-start: #111827; /* Dark Blue */
-            --background-end: #1e1b4b; /* Dark Indigo */
-            --text-color: #e5e7eb; /* Light Gray */
-            --text-muted: #9ca3af;
-            --card-bg: rgba(30, 41, 59, 0.5); /* Semi-transparent Dark Slate */
+            --primary-color: #22d3ee; /* Vibrant Cyan */
+            --secondary-color: rgba(34, 211, 238, 0.1);
+            --background-color: #0c0a09; /* Rich Black */
+            --text-color: #f8fafc; /* Almost White */
+            --text-muted: #a1a1aa; /* Zinc */
+            --card-bg: rgba(24, 24, 27, 0.5); /* Semi-transparent Zinc */
             --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-color: rgba(167, 139, 250, 0.1);
+            --shadow-color: rgba(34, 211, 238, 0.1);
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         body {
             font-family: 'Kalpurush', sans-serif;
-            background-color: var(--background-start);
-            background-image: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+            background-color: var(--background-color);
+            background: linear-gradient(-45deg, #020617, #1e293b, #030712, #1f2937);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            padding: 1rem;
+            padding: 2rem 1rem;
             color: var(--text-color);
         }
         .main-container {
@@ -43,29 +51,38 @@
             background: var(--card-bg);
             padding: 3rem;
             border-radius: 30px;
-            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
             border: 1px solid var(--border-color);
             text-align: center;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            margin-top: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .main-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6);
         }
         .header-icon {
             color: var(--primary-color);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--border-color);
             border-radius: 50%;
             padding: 14px;
             margin-bottom: 1.5rem;
             display: inline-block;
             line-height: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+        .header-icon:hover {
+            transform: rotate(15deg) scale(1.1);
         }
         h1 {
             color: #fff;
             font-weight: 700;
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             margin-bottom: 0.75rem;
+            text-shadow: 0 0 15px var(--shadow-color);
         }
         p.subtitle {
             color: var(--text-muted);
@@ -75,10 +92,10 @@
         .form-control {
             border-radius: 12px;
             padding: 1rem;
-            border: 1px solid #4b5563;
+            border: 1px solid #3f3f46;
             transition: all 0.3s ease;
             font-size: 1rem;
-            background-color: rgba(55, 65, 81, 0.5);
+            background-color: rgba(39, 39, 42, 0.5);
             color: var(--text-color);
         }
         .form-control::placeholder {
@@ -87,25 +104,26 @@
         .form-control:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 4px var(--secondary-color);
-            background-color: rgba(55, 65, 81, 0.8);
+            background-color: rgba(39, 39, 42, 0.8);
         }
         .btn-primary {
-            background: linear-gradient(to right, #a78bfa, #818cf8);
+            background: var(--primary-color);
             border: none;
             border-radius: 12px;
             padding: 1rem;
             font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            color: #fff;
+            color: #0c0a09;
+            box-shadow: 0 0 20px var(--shadow-color);
         }
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px -5px rgba(167, 139, 250, 0.3);
+            box-shadow: 0 10px 20px -5px rgba(34, 211, 238, 0.3);
         }
         .result-box {
-            background-color: rgba(55, 65, 81, 0.3);
-            border: 1px solid #4b5563;
+            background-color: rgba(39, 39, 42, 0.3);
+            border: 1px solid #3f3f46;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 2rem;
@@ -115,10 +133,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(17, 24, 39, 0.5);
+            background: rgba(12, 10, 9, 0.5);
             padding: 0.75rem 1rem;
             border-radius: 8px;
-            border: 1px solid #4b5563;
+            border: 1px solid #3f3f46;
         }
         .result-box a {
             font-weight: 700;
@@ -132,25 +150,31 @@
             cursor: pointer;
             color: var(--text-muted);
             font-size: 1.2rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .copy-btn:hover {
+            transform: scale(1.2);
+            color: var(--primary-color);
         }
         #copy-feedback {
             font-size: 0.875rem;
-            color: #34d399; /* Green for success */
+            color: #4ade80; /* Green for success */
         }
         .suggestions-box {
-            border: 1px solid #4b5563;
-            background-color: rgba(55, 65, 81, 0.3);
+            border: 1px solid #3f3f46;
+            background-color: rgba(39, 39, 42, 0.3);
         }
         .suggestion-item {
             background-color: transparent !important;
             color: var(--text-color);
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
         .suggestion-item:hover {
-            background-color: rgba(255, 255, 255, 0.1) !important;
+            transform: translateX(5px);
+            background-color: rgba(34, 211, 238, 0.1) !important;
         }
         footer {
-            margin-top: auto;
-            padding-top: 2rem;
+            margin-top: 2rem;
             color: var(--text-muted);
             font-size: 0.9rem;
             text-align: center;
@@ -164,7 +188,7 @@
     </div>
 
     <footer id="copyright-footer" class="d-none">
-        © ২০২৫ অনিক হাসান। সর্বস্বত্ব সংরক্ষিত।
+        © ২০২৫ আনিক হাসান। সর্বস্বত্ব সংরক্ষিত।
     </footer>
 
 
@@ -253,7 +277,7 @@
 
         async function displayErrorWithSuggestions(alias) {
             const suggestions = await generateGuaranteedSuggestions(alias);
-            let suggestionsHTML = '<h6 class="mb-2 text-center text-light">এই নামটি পাওয়া যায় নি, এগুলো চেষ্টা করুন:</h6><ul class="list-group list-group-flush">';
+            let suggestionsHTML = '<h6 class="mb-2 text-center">এই নামটি পাওয়া যায় নি, এগুলো চেষ্টা করুন:</h6><ul class="list-group list-group-flush">';
             suggestions.forEach(sugg => {
                 suggestionsHTML += `<li class="list-group-item suggestion-item" onclick="useSuggestion('${sugg}')">${sugg}</li>`;
             });
@@ -374,4 +398,3 @@
     </script>
 </body>
 </html>
-
