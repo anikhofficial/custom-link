@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লিংকের জাদুর কাঠি</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Kalpurush) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalpurush:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --primary-color: #a78bfa; /* Vibrant Lavender */
+            --secondary-color: rgba(167, 139, 250, 0.2);
+            --background-start: #111827; /* Dark Blue */
+            --background-end: #1e1b4b; /* Dark Indigo */
+            --text-color: #e5e7eb; /* Light Gray */
+            --text-muted: #9ca3af;
+            --card-bg: rgba(30, 41, 59, 0.5); /* Semi-transparent Dark Slate */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(167, 139, 250, 0.1);
+        }
+
+        body {
+            font-family: 'Kalpurush', sans-serif;
+            background-color: var(--background-start);
+            background-image: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            color: var(--text-color);
+        }
+        .main-container {
+            width: 100%;
+            max-width: 550px;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin-top: auto;
+        }
+        .header-icon {
+            color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 14px;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            line-height: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #fff;
+            font-weight: 700;
+            font-size: 2.25rem;
+            margin-bottom: 0.75rem;
+        }
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+        .form-control {
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid #4b5563;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            background-color: rgba(55, 65, 81, 0.5);
+            color: var(--text-color);
+        }
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px var(--secondary-color);
+            background-color: rgba(55, 65, 81, 0.8);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #a78bfa, #818cf8);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(167, 139, 250, 0.3);
+        }
+        .result-box {
+            background-color: rgba(55, 65, 81, 0.3);
+            border: 1px solid #4b5563;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .result-box .link-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(17, 24, 39, 0.5);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #4b5563;
+        }
+        .result-box a {
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        #copy-feedback {
+            font-size: 0.875rem;
+            color: #34d399; /* Green for success */
+        }
+        .suggestions-box {
+            border: 1px solid #4b5563;
+            background-color: rgba(55, 65, 81, 0.3);
+        }
+        .suggestion-item {
+            background-color: transparent !important;
+            color: var(--text-color);
+        }
+        .suggestion-item:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container" id="app-container">
+        <!-- App content will be loaded here by JavaScript -->
+    </div>
+
+    <footer id="copyright-footer" class="d-none">
+        © ২০২৫ অনিক হাসান। সর্বস্বত্ব সংরক্ষিত।
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle for dismissible alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCaivd0sGXoDNJuUxh3vetLIlpenI5hJXg",
+            authDomain: "custom-link-4975b.firebaseapp.com",
+            projectId: "custom-link-4975b",
+            storageBucket: "custom-link-4975b.firebasestorage.app",
+            messagingSenderId: "915955988812",
+            appId: "1:915955988812:web:e960851a014f613d92f7e9",
+            measurementId: "G-97M56ZZ5B0"
+        };
+
+        const appContainer = document.getElementById('app-container');
+        const footer = document.getElementById('copyright-footer');
+        let db;
+
+        function displayConnectionError(error, element = appContainer) {
+            element.innerHTML = `<div class="alert alert-warning"><h4 class="alert-heading">সংযোগ স্থাপন করা যায় নি!</h4><p>অ্যাপটি ফায়ারবেস-এর সাথে সংযোগ স্থাপন করতে পারছে না। বিস্তারিত: "${error.message}"</p><hr><p class="mb-1"><strong>দয়া করে নিচের বিষয়গুলো পরীক্ষা করুন:</strong></p><ol><li>আপনি কি ফায়ারবেস কনসোলে <strong>Firestore Database</strong> তৈরী করেছেন?</li><li>আপনার ফায়ারস্টোর <strong>Security Rules</strong> কি ডেটা পড়া ও লেখার অনুমতি দেয়?</li></ol><p>এই কাজগুলো ঠিকভাবে করা থাকলে, পৃষ্ঠাটি রিলোড করুন।</p></div>`;
+        }
+
+        async function generateRandomAlias(length = 6) {
+            let alias;
+            const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let isUnique = false;
+            while (!isUnique) {
+                alias = '';
+                for (let i = 0; i < length; i++) {
+                    alias += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                const docRef = doc(db, "urls", alias);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) { isUnique = true; }
+            }
+            return alias;
+        }
+
+        async function generateGuaranteedSuggestions(alias) {
+            const suggestions = new Set();
+            let attempts = 0;
+            while (suggestions.size < 3 && attempts < 20) {
+                let candidate;
+                const randomType = Math.random();
+                if (randomType < 0.5) {
+                    candidate = `${alias}${Math.floor(100 + Math.random() * 900)}`;
+                } else {
+                    candidate = await generateRandomAlias(5);
+                }
+                const docRef = doc(db, "urls", candidate);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) {
+                    suggestions.add(candidate);
+                }
+                attempts++;
+            }
+            return Array.from(suggestions);
+        }
+
+
+        function displaySuccess(shareableLink) {
+            document.getElementById('result-area').innerHTML = `
+                <div class="result-box">
+                    <p class="mb-2">আপনার নতুন শেয়ারযোগ্য লিংক তৈরী হয়ে গেছে:</p>
+                    <div class="link-container">
+                        <a href="${shareableLink}" target="_blank">${shareableLink}</a>
+                        <button class="copy-btn" onclick="copyToClipboard('${shareableLink}')"><i class="ph ph-copy"></i></button>
+                    </div>
+                    <p id="copy-feedback" class="small mt-2 text-center d-none">লিংক কপি হয়েছে!</p>
+                </div>
+            `;
+        }
+
+        async function createShortUrl(longUrl, alias) {
+            await setDoc(doc(db, "urls", alias), { longUrl: longUrl });
+            const shareableLink = `${window.location.href.split('#')[0]}#${alias}`;
+            displaySuccess(shareableLink);
+        }
+
+        async function displayErrorWithSuggestions(alias) {
+            const suggestions = await generateGuaranteedSuggestions(alias);
+            let suggestionsHTML = '<h6 class="mb-2 text-center text-light">এই নামটি পাওয়া যায় নি, এগুলো চেষ্টা করুন:</h6><ul class="list-group list-group-flush">';
+            suggestions.forEach(sugg => {
+                suggestionsHTML += `<li class="list-group-item suggestion-item" onclick="useSuggestion('${sugg}')">${sugg}</li>`;
+            });
+            suggestionsHTML += '</ul>';
+            document.getElementById('result-area').innerHTML = `
+                <div class="alert alert-danger"><strong>ত্রুটি!</strong> "${alias}" নামটি আগে থেকেই ব্যবহার করা হয়েছে।</div>
+                <div class="suggestions-box p-2">${suggestionsHTML}</div>
+            `;
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const longUrl = document.getElementById('long-url').value;
+            const customAlias = document.getElementById('custom-alias').value.trim().toLowerCase().replace(/\s+/g, '-');
+            const resultArea = document.getElementById('result-area');
+            const submitButton = event.target.querySelector('button');
+
+            resultArea.innerHTML = '';
+            submitButton.disabled = true;
+            submitButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> পরীক্ষা করা হচ্ছে...`;
+
+            try {
+                if (customAlias) {
+                    const docRef = doc(db, "urls", customAlias);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        await displayErrorWithSuggestions(customAlias);
+                    } else {
+                        await createShortUrl(longUrl, customAlias);
+                    }
+                } else {
+                    const newAlias = await generateRandomAlias();
+                    await createShortUrl(longUrl, newAlias);
+                }
+            } catch (error) {
+                console.error("Firestore operation failed:", error);
+                displayConnectionError(error, resultArea);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = `জাদু দেখুন`;
+            }
+        }
+
+        function loadMainApp() {
+            footer.classList.remove('d-none'); // Show the footer
+            appContainer.innerHTML = `
+                <div class="header-icon"><i class="ph-fill ph-magic-wand" style="font-size: 2.5rem;"></i></div>
+                <h1>লিংকের জাদুর কাঠি</h1>
+                <p class="subtitle">বড় লিংক দিন, জাদুর ছোঁয়ায় ছোট করে নিন</p>
+                <form id="shorten-form">
+                    <div class="mb-3">
+                        <input type="url" id="long-url" class="form-control" placeholder="আপনার বড় লিংকটি এখানে দিন" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="custom-alias" class="form-control" placeholder="আপনার কাস্টম লিংক দিন (না দিলেও সমস্যা নেই)">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">জাদু দেখুন</button>
+                </form>
+                <div id="result-area" class="mt-4"></div>
+            `;
+            const form = document.getElementById('shorten-form');
+            form.addEventListener('submit', handleFormSubmit);
+        }
+        
+        window.useSuggestion = function(suggestion) {
+            document.getElementById('custom-alias').value = suggestion;
+            document.getElementById('shorten-form').dispatchEvent(new Event('submit', { bubbles: true }));
+        }
+
+        window.copyToClipboard = function(textToCopy) {
+            const feedback = document.querySelector('#copy-feedback');
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            tempTextArea.style.position = 'absolute';
+            tempTextArea.style.left = '-9999px';
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            try {
+                document.execCommand('copy');
+                if(feedback) {
+                    feedback.classList.remove('d-none');
+                    setTimeout(() => { feedback.classList.add('d-none'); }, 2000);
+                }
+            } catch (err) { console.error('Failed to copy text: ', err); }
+            document.body.removeChild(tempTextArea);
+        }
+
+        async function main() {
+            if (firebaseConfig.projectId === "YOUR_PROJECT_ID" || !firebaseConfig.apiKey) {
+                appContainer.innerHTML = `<div class="alert alert-danger"><h4 class="alert-heading">ফায়ারবেস কনফিগারেশন ত্রুটি!</h4><p>আপনাকে আপনার নিজের ফায়ারবেস প্রোজেক্টের কনফিগারেশন কোড এখানে যোগ করতে হবে।</p></div>`;
+                return;
+            }
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    appContainer.innerHTML = `<div class="text-center"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 redirect-message">লিংক খুঁজে বের করা হচ্ছে...</p></div>`;
+                    const docRef = doc(db, "urls", hash);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        window.location.replace(docSnap.data().longUrl);
+                    } else {
+                        appContainer.innerHTML = `<div class="alert alert-danger">দুঃখিত, লিংকটি খুঁজে পাওয়া যায় নি।</div>`;
+                    }
+                } else {
+                    loadMainApp();
+                }
+            } catch (error) {
+                console.error("Firebase Initialization/Connection Error:", error);
+                displayConnectionError(error);
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
+
